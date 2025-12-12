@@ -10,7 +10,6 @@ const DbConnection= async()=>{
       //  console.log(ConnectionInstance);
        console.log(`\n Connection establised successfully ::DB host!! ${ConnectionInstance.connection.host}`);
 
-
     }catch(error){
     console.log("MONOGODB connection error",error)
     process.exit(1)
