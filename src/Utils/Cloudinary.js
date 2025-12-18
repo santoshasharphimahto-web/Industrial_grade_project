@@ -15,11 +15,11 @@ const uploadOnCloudinary = async (localFilePath) => {
   if (!localFilePath) return null;
 
   try {
-    console.log(
-  process.env.CLOUDINARY_CLOUD_NAME,
-  process.env.CLOUDINARY_API_KEY,
-  process.env.CLOUDINARY_API_SECRET ? "SECRET_LOADED" : "SECRET_MISSING"
-);
+  //   console.log(
+  // process.env.CLOUDINARY_CLOUD_NAME,
+  // process.env.CLOUDINARY_API_KEY,
+  // process.env.CLOUDINARY_API_SECRET ? "SECRET_LOADED" : "SECRET_MISSING"
+// );
 
     const response = await cloudinary.uploader.upload(localFilePath, {
       resource_type: "auto",

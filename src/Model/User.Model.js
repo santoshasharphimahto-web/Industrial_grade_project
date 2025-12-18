@@ -1,6 +1,6 @@
 import  mongoose,{ Schema } from "mongoose";
 import bcrypt from "bcrypt";
-import jwt from 'json-web-token';
+import jwt from "jsonwebtoken"
 
 const userSchema= new Schema(
     {
@@ -13,6 +13,10 @@ const userSchema= new Schema(
             trim:true,
 
         },
+        watchHistory:[{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:"Video"
+        }],
         
          email:{
             type:String,
@@ -50,13 +54,13 @@ const userSchema= new Schema(
 )
 
 userSchema.pre('save', async function(next){
-    if(!this.isModified('password')) return next()
+    if(!this.isModified('password'))  return;
      this.password= await bcrypt.hash(this.password,10);
-     next;
+    
     
 })
 
-userSchema.methods.isCorrectPassword= async  function(password){
+userSchema.methods.isCorrectPassword= async function(password){
   
     return await bcrypt.compare(password,this.password);
 }
@@ -91,4 +95,4 @@ userSchema.methods.genreateRefreshToken= function(){
 
     )
 }
-export const User = mongoose.model("User",userSChema);
+export const User = mongoose.model("User",userSchema);
